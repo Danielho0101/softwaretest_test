@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js" integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.min.js" integrity="sha384-ODmDIVzN+pFdexxHEHFBQH3/9/vQ9uori45z4JjnFsRydbmQbmL5t1tQ0culUzyK" crossorigin="anonymous"></script>
+
+<title>Meeting Notes Recording</title>
+
+<script type="text/javascript" defer>
+    function addToCSVFile() {
+        var csvData = new Array();  // To collect the data
+
+        // Collecting the data
+        csvData[0] = document.getElementById('meetingDate').value;
+        csvData[1] = document.getElementById('fromtime').value;
+        csvData[2] = document.getElementById('toTime').value;
+        csvData[3] = document.getElementById('countent').value;
+        window.open('data:text/csv;charset=utf-8,' + csvData.join(','));
+        clearData();
+        CalculateTime();
+        alert("Record Added Successfully");
+    }
+
+    function clearData() {
+       var one = document.getElementById('meetingDate').value;
+        document.getElementById('fromtime').value;
+        document.getElementById('toTime').value;
+        document.getElementById('countent').value;
+
+    }
+    
+function CalculateTime() {
+    var CountTime = +document.getElementById('toTime').value.substring(0,2) - +document.getElementById('fromtime').value.substring(0,2);
+    var CountMmins = +document.getElementById('toTime').value.substring(3,5) - +document.getElementById('fromtime').value.substring(3,5);
+    var Different = CountTime * 60 + CountMmins;
+    var DifferentHours = Different / 60 ;
+document.getElementById("display").innerHTML = `${DifferentHours} Hours`;
+}
+
+</script>
+</head>
+<body>
+    <div class="background">
+        
+    <div class="row">
+        <div class="col-md-2">
+              
+        </div>
+    
+    <div class="col-md-8">
+    <h1 class="space">Meeting Notes Recording System</h1>
+    <div class="row">
+        <span class="space">Date:<input type="date" id="meetingDate"/></span>
+        <br/>
+    </div>
+        <label class="space">From Time: </label> 
+        <select id="fromtime">
+        <option value="09:00">9:00</option>
+        <option value="09:30">9:30</option>
+        <option value="10:00">10:00</option>
+        <option value="10:30">10:30</option>
+        <option value="11:00">11:00</option>
+        <option value="11:30">11:30</option>
+        <option value="12:00">12:00</option>
+        <option value="12:30">12:30</option>
+        <option value="13:00">13:00</option>
+        <option value="13:30">13:30</option>
+        <option value="14:00">14:00</option>
+        <option value="14:30">14:30</option>
+        <option value="15:00">15:00</option>
+        </select>
+        <label class="space">To Time:</label> 
+        <select id="toTime">
+            <option value="09:00">9:00</option>
+            <option value="09:30">9:30</option>
+            <option value="10:00">10:00</option>
+            <option value="10:30">10:30</option>
+            <option value="11:00">11:00</option>
+            <option value="11:30">11:30</option>
+            <option value="12:00">12:00</option>
+            <option value="12:30">12:30</option>
+            <option value="13:00">13:00</option>
+            <option value="13:30">13:30</option>
+            <option value="14:00">14:00</option>
+            <option value="14:30">14:30</option>
+            <option value="15:00">15:00</option>
+            </select>
+        <div>
+        <div class="space">
+        <span>Meeting duration time:</span>
+        <span id="display"></span>
+    </div>
+          
+     </div>
+     <div class="row">
+        <label class="space">Content: <input type="text" id="countent" /></label>
+    </div>
+        <div class="row">
+            <div class="col-4">
+        <input type="button" id="addButton" value="Add to CSV File" onClick="javascript: addToCSVFile()" />
+            </div>
+        </div>
+ </div>
+ <div class="col-md-2">
+
+ </div>
+</div>
+</div>
+
+</body>
+</html>
